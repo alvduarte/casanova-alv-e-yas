@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Álvaro e Yasmin | Lista de presentes</title>
+<meta name="description" content="Lista de presentes da casa nova de Álvaro e Yasmin.">
+<meta name="theme-color" content="#12372A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M6 30V14a10 10 0 0 1 20 0v16z' fill='%235B2C86'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Young+Serif&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --pinho: #12372A;
+    --folha: #2E7A58;
+    --folha-escura: #1F5C42;
+    --salvia: #E6EFE9;
+    --ameixa: #43334b;
+    --ameixa-escura: #43334b;
+    --lilas: #EDE6F6;
+    --papel: #FBFBF9;
+    --tinta: #17231D;
+    --tinta-suave: #55635B;
+    --linha: #D6E0D9;
+    --largura: 1200px;
+    --gutter: clamp(20px, 5vw, 48px);
+    --hero-pb: clamp(56px, 8vw, 96px);
+    color-scheme: light;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--papel);
+    color: var(--tinta);
+    font-family: 'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible { outline: 3px solid var(--ameixa); outline-offset: 2px; }
+  .sr {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  /* Aviso do modo de demonstração */
+  .demo {
+    background: var(--lilas);
+    color: var(--ameixa-escura);
+    padding: 10px var(--gutter);
+    font-size: .9375rem;
+    text-align: center;
+  }
+  .demo[hidden] { display: none; }
+
+  /* Abertura */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: var(--pinho);
+    color: #F2F6F3;
+    padding: clamp(56px, 9vw, 112px) var(--gutter) var(--hero-pb);
+  }
+  .hero-in {
+    position: relative;
+    max-width: var(--largura);
+    margin: 0 auto;
+    min-height: 320px;
+  }
+  .hero-texto { position: relative; z-index: 1; }
+  .hero h1 {
+    font-family: 'Young Serif', Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    font-size: clamp(3.4rem, 10vw, 8rem);
+    line-height: .98;
+    letter-spacing: -.02em;
+    margin: 0 0 28px;
+  }
+  .hero .subtitulo {
+    font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+    font-weight: 500;
+    color: #D9C9EF;
+    margin: 0 0 14px;
+  }
+  .hero .intro {
+    max-width: 48ch;
+    margin: 0;
+    color: #C5D8CD;
+    font-size: 1.0625rem;
+  }
+  .arcos {
+    position: absolute;
+    right: 0;
+    bottom: calc(var(--hero-pb) * -1);
+    height: calc(100% + var(--hero-pb) + 24px);
+    max-height: 520px;
+    width: auto;
+    pointer-events: none;
+  }
+  .arco {
+    fill: none;
+    stroke-width: 2;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: desenhar 1.6s cubic-bezier(.2, .7, .2, 1) forwards;
+  }
+  .arco-externo { stroke: #43334b; }
+  .arco-medio { stroke: #4E9A78; animation-delay: .25s; }
+  .arco-cheio { fill: var(--ameixa); opacity: 0; animation: aparecer 1s .9s ease-out forwards; }
+  @keyframes desenhar { to { stroke-dashoffset: 0; } }
+  @keyframes aparecer { to { opacity: 1; } }
+
+  /* Barra de ferramentas */
+  .barra {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--papel);
+    border-bottom: 1px solid var(--linha);
+  }
+  .barra-in {
+    max-width: var(--largura);
+    margin: 0 auto;
+    padding: 14px var(--gutter);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 20px;
+  }
+  .busca { position: relative; flex: 1 1 220px; max-width: 280px; }
+  .busca svg {
+    position: absolute; left: 14px; top: 50%; translate: 0 -50%;
+    color: var(--tinta-suave); pointer-events: none;
+  }
+  .busca input {
+    width: 100%;
+    height: 44px;
+    padding: 0 14px 0 42px;
+    border: 1.5px solid var(--linha);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--tinta);
+    font: inherit;
+  }
+  .busca input::placeholder { color: #75837B; }
+  .busca input:focus-visible { outline-offset: 0; border-color: var(--ameixa); }
+  .seletor { flex: 0 1 210px; }
+  .seletor select {
+    width: 100%;
+    height: 44px;
+    padding: 0 40px 0 14px;
+    border: 1.5px solid var(--linha);
+    border-radius: 10px;
+    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2355635B' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center;
+    color: var(--tinta);
+    font: inherit;
+    text-overflow: ellipsis;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+  }
+  .seletor select:focus-visible { outline-offset: 0; border-color: var(--ameixa); }
+  .seletor[hidden] { display: none; }
+  .filtros {
+    display: inline-flex;
+    gap: 2px;
+    padding: 4px;
+    background: var(--salvia);
+    border-radius: 12px;
+  }
+  .filtros button {
+    height: 36px;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 9px;
+    background: transparent;
+    color: var(--pinho);
+    font: inherit;
+    font-size: .9375rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .filtros button[aria-pressed="true"] {
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(18, 55, 42, .18);
+  }
+  .progresso {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--tinta-suave);
+    font-size: .9375rem;
+  }
+  .progresso[hidden] { display: none; }
+  .trilho {
+    width: 88px; height: 6px;
+    background: var(--salvia);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .trilho span {
+    display: block; height: 100%; width: 0;
+    background: var(--ameixa);
+    border-radius: inherit;
+    transition: width .5s ease;
+  }
+
+  /* Lista */
+  .principal {
+    max-width: var(--largura);
+    margin: 0 auto;
+    padding: 40px var(--gutter) 96px;
+  }
+  .grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+    gap: 44px 24px;
+  }
+  .item { display: flex; flex-direction: column; min-width: 0; }
+  .moldura { position: relative; }
+  .foto {
+    position: relative;
+    display: block;
+    aspect-ratio: 1;
+    border-radius: 16px;
+    background: var(--salvia);
+    overflow: hidden;
+  }
+  .foto img, .sem-foto {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+  }
+  .foto img {
+    object-fit: contain;
+    padding: 7%;
+    mix-blend-mode: multiply;
+    transition: opacity .25s ease, filter .25s ease;
+  }
+  .sem-foto { display: grid; place-items: center; color: #7FA995; }
+  .selo {
+    position: absolute; top: 12px; left: 12px; z-index: 1;
+    padding: 7px 11px;
+    border-radius: 99px;
+    background: var(--ameixa);
+    color: #fff;
+    font-size: .8125rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .item.is-meu .selo { background: var(--folha-escura); }
+  .item.is-reservado .foto { background: var(--lilas); }
+  .item.is-reservado .foto img { filter: grayscale(1); opacity: .55; }
+  .item.is-reservado .nome { color: var(--tinta-suave); }
+
+  .nome {
+    margin: 14px 0 4px;
+    min-height: 2.6em;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .detalhes {
+    display: flex; flex-wrap: wrap; gap: 0 12px;
+    margin: 0 0 14px;
+    color: var(--tinta-suave);
+    font-size: .875rem;
+    line-height: 1.4;
+  }
+  .acoes { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
+  .acoes > * { flex: 1 1 auto; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    height: 42px;
+    padding: 0 16px;
+    border: 1.5px solid transparent;
+    border-radius: 10px;
+    font: inherit;
+    font-size: .9375rem;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color .15s, color .15s, border-color .15s;
+  }
+  .btn:disabled { opacity: .6; cursor: default; }
+  .btn-primario { background: var(--ameixa); color: #fff; }
+  .btn-primario:hover:not(:disabled) { background: var(--ameixa-escura); }
+  .btn-contorno { border-color: var(--folha); color: var(--folha-escura); background: transparent; }
+  .btn-contorno:hover { background: var(--salvia); }
+  .btn-roxo { border-color: var(--ameixa); color: var(--ameixa); background: transparent; }
+  .btn-roxo:hover { background: var(--lilas); }
+  .btn-simples { color: var(--pinho); background: transparent; }
+  .btn-simples:hover { background: var(--salvia); }
+  .indisponivel {
+    display: inline-flex; align-items: center; justify-content: center;
+    height: 42px; padding: 0 8px;
+    color: var(--tinta-suave);
+    font-size: .9375rem; font-weight: 600;
+  }
+
+  /* Estados */
+  .mensagem { grid-column: 1 / -1; padding: 56px 0; max-width: 46ch; }
+  .mensagem h2 {
+    margin: 0 0 8px;
+    font-family: 'Young Serif', Georgia, serif;
+    font-weight: 400;
+    font-size: 1.75rem;
+    line-height: 1.15;
+  }
+  .mensagem p { margin: 0 0 20px; color: var(--tinta-suave); }
+  .esqueleto .foto { animation: pulso 1.5s ease-in-out infinite; }
+  .esqueleto .linha { height: 14px; margin-top: 14px; border-radius: 6px; background: var(--salvia); animation: pulso 1.5s ease-in-out infinite; }
+  .esqueleto .linha.curta { width: 55%; }
+  @keyframes pulso { 50% { opacity: .55; } }
+
+  /* Diálogo */
+  dialog {
+    width: min(92vw, 440px);
+    padding: 0;
+    border: 0;
+    border-radius: 18px;
+    background: #fff;
+    color: var(--tinta);
+    box-shadow: 0 24px 60px rgba(18, 55, 42, .28);
+  }
+  dialog::backdrop { background: rgba(18, 55, 42, .55); }
+  dialog[open] { animation: entrar .2s ease-out; }
+  @keyframes entrar { from { opacity: 0; transform: translateY(8px); } }
+  .dlg-corpo { padding: 28px; }
+  .dlg-corpo h2 {
+    margin: 0 0 12px;
+    font-family: 'Young Serif', Georgia, serif;
+    font-weight: 400;
+    font-size: 1.65rem;
+    line-height: 1.15;
+  }
+  .dlg-item { margin: 0 0 8px; font-weight: 600; }
+  .dlg-texto { margin: 0; color: var(--tinta-suave); }
+  .dlg-campo { margin-top: 20px; }
+  .dlg-campo[hidden] { display: none; }
+  .dlg-campo label { display: block; margin-bottom: 6px; font-size: .9375rem; font-weight: 600; }
+  .dlg-campo input {
+    width: 100%; height: 44px; padding: 0 14px;
+    border: 1.5px solid var(--linha); border-radius: 10px;
+    font: inherit; color: var(--tinta);
+  }
+  .dlg-campo input:focus-visible { outline-offset: 0; border-color: var(--ameixa); }
+  .dlg-acoes { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; margin-top: 24px; }
+
+  /* Aviso rápido */
+  .aviso {
+    position: fixed; left: 50%; bottom: 24px; z-index: 50;
+    max-width: min(92vw, 420px);
+    padding: 12px 18px;
+    border-radius: 12px;
+    background: var(--pinho);
+    color: #fff;
+    font-weight: 500;
+    opacity: 0;
+    translate: -50% 16px;
+    pointer-events: none;
+    transition: opacity .2s ease, translate .2s ease;
+  }
+  .aviso.visivel { opacity: 1; translate: -50% 0; }
+
+  #intervalo{
+  text-decoration: underline;
+  }
+
+  .rodape {
+    max-width: var(--largura);
+    margin: 0 auto;
+    padding: 28px var(--gutter) 48px;
+    border-top: 1px solid var(--linha);
+    color: var(--tinta-suave);
+    font-size: .9375rem;
+  }
+
+  @media (max-width: 640px) {
+    .grade { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 14px; }
+    .acoes > * { flex-basis: 100%; }
+    .nome { font-size: 1rem; }
+    .selo { top: 8px; left: 8px; font-size: .75rem; padding: 6px 9px; }
+    .arcos { opacity: .35; right: -70px; }
+    .barra { position: static; }
+    .seletor { flex: 1 1 100%; }
+    .progresso { margin-left: 0; width: 100%; }
+    .trilho { flex: 1; width: auto; }
+    .busca { max-width: none; }
+    .dlg-corpo { padding: 22px; }
+    .dlg-acoes > * { flex: 1 1 auto; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .arco { animation: none; stroke-dashoffset: 0; }
+    .arco-cheio { animation: none; opacity: 1; }
+    .esqueleto .foto, .esqueleto .linha { animation: none; }
+    dialog[open] { animation: none; }
+    .aviso, .trilho span { transition: none; }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="demo" id="demo" hidden>
+  Modo de demonstração: os itens abaixo são de exemplo. Para usar a sua planilha, cole o endereço do Apps Script em API_URL, no início do script desta página.
+</div>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="hero-texto">
+      <h1 class="intervalo">Chá de casa nova </h1><br> <h1> Álvaro<br>e Yasmin</h1>
+      <p class="subtitulo">Lista de presentes da nossa casa nova</p>
+      <p class="intro">Estamos montando a casa aos poucos e vamos adorar ter você por perto. Se quiser nos presentear, escolha um item abaixo. Ao reservar, ele fica marcado para os outros convidados e evitamos presentes repetidos.</p>
+    </div>
+
+    <svg class="arcos" viewBox="0 0 400 480" preserveAspectRatio="xMaxYMax meet" aria-hidden="true" focusable="false">
+      <path class="arco arco-externo" pathLength="1" d="M20 480V200A180 180 0 0 1 380 200V480"/>
+      <path class="arco arco-medio" pathLength="1" d="M60 480V200A140 140 0 0 1 340 200V480"/>
+      <path class="arco-cheio" d="M100 480V200A100 100 0 0 1 300 200V480Z"/>
+    </svg>
+  </div>
+</header>
+
+<div class="barra">
+  <div class="barra-in">
+    <div class="busca">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="busca" type="search" placeholder="Buscar presente" aria-label="Buscar presente" autocomplete="off">
+    </div>
+
+    <div class="seletor" id="seletor" hidden>
+      <select id="ambiente" aria-label="Filtrar por ambiente"></select>
+    </div>
+
+    <div class="filtros" role="group" aria-label="Filtrar itens">
+      <button type="button" data-filtro="todos" aria-pressed="true">Todos</button>
+      <button type="button" data-filtro="disponiveis" aria-pressed="false">Disponíveis</button>
+      <button type="button" data-filtro="reservados" aria-pressed="false">Reservados</button>
+    </div>
+
+    <div class="progresso" id="progresso" hidden>
+      <span id="progresso-texto"></span>
+      <div class="trilho" aria-hidden="true"><span id="progresso-barra"></span></div>
+    </div>
+  </div>
+</div>
+
+<main class="principal">
+  <div class="grade" id="grade" aria-live="polite"></div>
+</main>
+
+<footer class="rodape">
+  Obrigado por fazer parte da nossa casa nova. Álvaro e Yasmin.
+</footer>
+
+<dialog id="dialogo" aria-labelledby="dlg-titulo">
+  <form id="dlg-form" class="dlg-corpo">
+    <h2 id="dlg-titulo"></h2>
+    <p class="dlg-item" id="dlg-item"></p>
+    <p class="dlg-texto" id="dlg-texto"></p>
+    <div class="dlg-campo" id="dlg-campo">
+      <label for="dlg-nome">Seu nome (opcional)</label>
+      <input id="dlg-nome" type="text" maxlength="80" autocomplete="name">
+    </div>
+    <div class="dlg-acoes">
+      <button type="button" class="btn btn-simples" id="dlg-voltar">Voltar</button>
+      <button type="submit" class="btn btn-primario" id="dlg-confirmar">Confirmar</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  'use strict';
+
+  /* ------------------------------------------------------------------
+     CONFIGURAÇÃO
+     Cole abaixo o endereço do aplicativo da web criado no Apps Script
+     (termina com /exec). Com o campo vazio, o site abre em modo de
+     demonstração, com itens de exemplo.
+  ------------------------------------------------------------------ */
+  const CONFIG = {
+    API_URL: 'https://script.google.com/macros/s/AKfycbx2uaCWwJ-tHSfiwfq8U1S7htvxdd8bo3jegD5aTJD3hQpHZxbxpcdq35dnnaOM7f45Eg/exec',
+    ATUALIZAR_A_CADA_MS: 60000
+  };
+
+  const CHAVE_RESERVAS = 'casa-nova:minhas-reservas';
+  const CHAVE_CACHE = 'casa-nova:cache-lista';
+  const CHAVE_NOME = 'casa-nova:nome';
+  const CHAVE_DEMO = 'casa-nova:demo';
+
+  const ITENS_DEMO = [
+    { id: 2, categoria: 'Sala', nome: 'Sofá', reservado: true },
+    { id: 3, categoria: 'Sala', nome: 'Rack ou painel para TV' },
+    { id: 4, categoria: 'Sala', nome: 'Tapete' },
+    { id: 5, categoria: 'Cozinha', nome: 'Air fryer' },
+    { id: 6, categoria: 'Cozinha', nome: 'Batedeira' },
+    { id: 7, categoria: 'Cozinha', nome: 'Liquidificador', reservado: true },
+    { id: 8, categoria: 'Quarto casal', nome: 'Criados-mudos', quantidade: 2 },
+    { id: 9, categoria: 'Quarto casal', nome: 'Espelho' },
+    { id: 10, categoria: 'Banheiro', nome: 'Espelho' },
+    { id: 11, categoria: 'Banheiro', nome: 'Porta-toalhas' },
+    { id: 12, categoria: 'Enxoval - Cama e banho', nome: 'Jogos de lençol', quantidade: 3 },
+    { id: 13, categoria: 'Enxoval - Cama e banho', nome: 'Toalhas de banho', quantidade: 6 }
+  ].map(i => ({ link: 'https://example.com/produto-' + i.id, imagem: '', quantidade: 1, reservado: false, ...i }));
+
+  /* ------------------------------------------------------------------ */
+
+  const $ = (seletor, raiz = document) => raiz.querySelector(seletor);
+
+  const lerJSON = (chave, padrao) => {
+    try { const v = localStorage.getItem(chave); return v ? JSON.parse(v) : padrao; }
+    catch { return padrao; }
+  };
+  const gravarJSON = (chave, valor) => {
+    try { localStorage.setItem(chave, JSON.stringify(valor)); } catch { /* armazenamento indisponível */ }
+  };
+
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+  const urlSegura = u => {
+    const v = String(u || '').trim();
+    return /^https?:\/\//i.test(v) ? v : '';
+  };
+  const normalizar = s => String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  const chaveDe = it => `${String(it.categoria || '').trim()}|${String(it.nome).trim()}|${String(it.link || '').trim()}`;
+
+  const estado = {
+    itens: [],
+    carregado: false,
+    erro: false,
+    hash: '',
+    filtro: 'todos',
+    categoria: '',
+    catsChave: '',
+    busca: '',
+    minhas: lerJSON(CHAVE_RESERVAS, {})
+  };
+  let ultimaCarga = 0;
+
+  const ICONES = {
+    externo: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
+    caixa: '<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg>'
+  };
+
+  /* ---------------------------- Comunicação --------------------------- */
+
+  async function demo(acao, d) {
+    await new Promise(r => setTimeout(r, 350));
+    const mapa = lerJSON(CHAVE_DEMO, {});
+    const reservado = it => (it.id in mapa ? mapa[it.id] : !!it.reservado);
+
+    if (acao === 'listar') {
+      return { ok: true, itens: ITENS_DEMO.map(it => ({ ...it, reservado: reservado(it) })) };
+    }
+    const alvo = ITENS_DEMO.find(it => it.id === Number(d.id));
+    if (!alvo) return { ok: false, erro: 'lista_mudou' };
+    if (acao === 'reservar') {
+      if (reservado(alvo)) return { ok: false, erro: 'ja_reservado' };
+      mapa[alvo.id] = true; gravarJSON(CHAVE_DEMO, mapa);
+      return { ok: true, token: 'demo' };
+    }
+    mapa[alvo.id] = false; gravarJSON(CHAVE_DEMO, mapa);
+    return { ok: true };
+  }
+
+  async function chamar(acao, dados = {}) {
+    if (!CONFIG.API_URL) return demo(acao, dados);
+    let resp;
+    if (acao === 'listar') {
+      resp = await fetch(CONFIG.API_URL + '?acao=listar', { cache: 'no-store' });
+    } else {
+      // Texto simples evita a pré-verificação CORS, que o Apps Script não responde.
+      resp = await fetch(CONFIG.API_URL, { method: 'POST', body: JSON.stringify({ acao, ...dados }) });
+    }
+    if (!resp.ok) throw new Error('http ' + resp.status);
+    return resp.json();
+  }
+
+  async function carregar(silencioso = false) {
+    if (!silencioso && !estado.carregado) { estado.erro = false; render(); }
+    try {
+      const r = await chamar('listar');
+      if (!r.ok) throw new Error(r.erro || 'falha');
+
+      const reservadas = new Set(r.itens.filter(i => i.reservado).map(chaveDe));
+      let mudou = false;
+      for (const k of Object.keys(estado.minhas)) {
+        if (!reservadas.has(k)) { delete estado.minhas[k]; mudou = true; }
+      }
+      if (mudou) gravarJSON(CHAVE_RESERVAS, estado.minhas);
+
+      const hash = JSON.stringify(r.itens);
+      if (!estado.carregado || hash !== estado.hash || mudou) {
+        estado.itens = r.itens;
+        estado.hash = hash;
+        estado.carregado = true;
+        estado.erro = false;
+        render();
+      }
+      if (CONFIG.API_URL) gravarJSON(CHAVE_CACHE, r.itens);
+      ultimaCarga = Date.now();
+    } catch {
+      if (!estado.carregado) { estado.erro = true; render(); }
+    }
+  }
+
+  /* ------------------------------ Interface --------------------------- */
+
+  function htmlItem(it) {
+    const link = urlSegura(it.link);
+    const minha = it.reservado && !!estado.minhas[chaveDe(it)];
+    const imagem = urlSegura(it.imagem);
+    const classes = ['item', it.reservado ? 'is-reservado' : '', minha ? 'is-meu' : ''].filter(Boolean).join(' ');
+
+    const midia = imagem
+      ? `<img src="${esc(imagem)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">`
+      : `<span class="sem-foto">${ICONES.caixa}</span>`;
+    const foto = link
+      ? `<a class="foto" href="${esc(link)}" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">${midia}</a>`
+      : `<div class="foto">${midia}</div>`;
+    const selo = minha
+      ? '<span class="selo">Reservado por você</span>'
+      : it.reservado ? '<span class="selo">Reservado</span>' : '';
+
+    const ver = link
+      ? `<a class="btn btn-contorno" href="${esc(link)}" target="_blank" rel="noopener noreferrer">Ver produto ${ICONES.externo}<span class="sr">(abre em nova aba)</span></a>`
+      : '';
+    let principal;
+    if (minha) {
+      principal = `<button type="button" class="btn btn-roxo" data-acao="cancelar" data-id="${esc(it.id)}">Cancelar reserva</button>`;
+    } else if (it.reservado) {
+      principal = '<span class="indisponivel">Já reservado</span>';
+    } else {
+      principal = `<button type="button" class="btn btn-primario" data-acao="reservar" data-id="${esc(it.id)}">Reservar</button>`;
+    }
+
+    const detalhes = [];
+    if (it.categoria) detalhes.push(`<span>${esc(it.categoria)}</span>`);
+    if (Number(it.quantidade) > 1) detalhes.push(`<span>Quantidade: ${esc(it.quantidade)}</span>`);
+
+    return `<article class="${classes}">
+      <div class="moldura">${selo}${foto}</div>
+      <h3 class="nome">${esc(it.nome)}</h3>
+      <p class="detalhes">${detalhes.join('')}</p>
+      <div class="acoes">${ver}${principal}</div>
+    </article>`;
+  }
+
+  function htmlEsqueleto() {
+    return Array.from({ length: 8 }, () =>
+      '<div class="item esqueleto"><div class="foto"></div><div class="linha"></div><div class="linha curta"></div></div>'
+    ).join('');
+  }
+
+  function filtrar() {
+    const q = normalizar(estado.busca.trim());
+    return estado.itens.filter(it => {
+      if (estado.categoria && it.categoria !== estado.categoria) return false;
+      if (q && !normalizar(`${it.nome} ${it.categoria || ''}`).includes(q)) return false;
+      if (estado.filtro === 'disponiveis') return !it.reservado;
+      if (estado.filtro === 'reservados') return it.reservado;
+      return true;
+    });
+  }
+
+  function atualizarProgresso() {
+    const total = estado.itens.length;
+    const caixa = $('#progresso');
+    caixa.hidden = !estado.carregado || total === 0;
+    if (caixa.hidden) return;
+    const reservados = estado.itens.filter(i => i.reservado).length;
+    $('#progresso-texto').textContent = `${reservados} de ${total} reservados`;
+    $('#progresso-barra').style.width = `${Math.round((reservados / total) * 100)}%`;
+  }
+
+  function montarAmbientes() {
+    const caixa = $('#seletor');
+    const seletor = $('#ambiente');
+    const cats = [...new Set(estado.itens.map(i => i.categoria).filter(Boolean))];
+    caixa.hidden = !estado.carregado || cats.length < 2;
+    const chave = cats.join('|');
+    if (chave === estado.catsChave) return;
+    estado.catsChave = chave;
+    if (estado.categoria && !cats.includes(estado.categoria)) estado.categoria = '';
+    seletor.innerHTML = '<option value="">Todos os ambientes</option>' +
+      cats.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('');
+    seletor.value = estado.categoria;
+  }
+
+  function render() {
+    const grade = $('#grade');
+    montarAmbientes();
+    atualizarProgresso();
+    grade.setAttribute('aria-busy', String(!estado.carregado && !estado.erro));
+
+    if (estado.erro) {
+      grade.innerHTML = `<div class="mensagem">
+        <h2>Não foi possível carregar a lista</h2>
+        <p>Verifique sua conexão com a internet e tente de novo.</p>
+        <button type="button" class="btn btn-primario" data-acao="recarregar">Tentar de novo</button>
+      </div>`;
+      return;
+    }
+    if (!estado.carregado) { grade.innerHTML = htmlEsqueleto(); return; }
+    if (estado.itens.length === 0) {
+      grade.innerHTML = `<div class="mensagem"><h2>A lista ainda está vazia</h2><p>Os presentes aparecerão aqui assim que forem adicionados à planilha.</p></div>`;
+      return;
+    }
+    const lista = filtrar();
+    if (lista.length === 0) {
+      grade.innerHTML = `<div class="mensagem"><h2>Nenhum item encontrado</h2><p>Tente outro termo de busca ou mude o filtro.</p></div>`;
+      return;
+    }
+    grade.innerHTML = lista.map(htmlItem).join('');
+  }
+
+  let temporizadorAviso;
+  function aviso(texto) {
+    const el = $('#aviso');
+    el.textContent = texto;
+    el.classList.add('visivel');
+    clearTimeout(temporizadorAviso);
+    temporizadorAviso = setTimeout(() => el.classList.remove('visivel'), 3800);
+  }
+
+  /* ------------------------------ Diálogo ----------------------------- */
+
+  const dlg = $('#dialogo');
+  const campoNome = $('#dlg-nome');
+  let acaoDialogo = null;
+
+  function abrirDialogo({ titulo, item, texto, pedirNome, rotulo, aoConfirmar }) {
+    $('#dlg-titulo').textContent = titulo;
+    $('#dlg-item').textContent = item;
+    $('#dlg-texto').textContent = texto;
+    $('#dlg-campo').hidden = !pedirNome;
+    $('#dlg-confirmar').textContent = rotulo;
+    campoNome.value = pedirNome ? (localStorage.getItem(CHAVE_NOME) || '') : '';
+    acaoDialogo = aoConfirmar;
+    dlg.showModal();
+    if (pedirNome) campoNome.focus();
+  }
+
+  $('#dlg-voltar').addEventListener('click', () => dlg.close());
+  dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', () => { acaoDialogo = null; });
+
+  $('#dlg-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!acaoDialogo) return;
+    const botao = $('#dlg-confirmar');
+    const rotulo = botao.textContent;
+    botao.disabled = true;
+    botao.textContent = 'Salvando';
+    try {
+      await acaoDialogo(campoNome.value.trim());
+      dlg.close();
+    } catch {
+      aviso('Não foi possível concluir agora. Tente novamente.');
+    } finally {
+      botao.disabled = false;
+      botao.textContent = rotulo;
+    }
+  });
+
+  /* ------------------------------- Ações ------------------------------ */
+
+  async function reservar(it, nome) {
+    const r = await chamar('reservar', { id: it.id, link: it.link, item: it.nome, nome });
+    if (r.ok) {
+      estado.minhas[chaveDe(it)] = r.token;
+      gravarJSON(CHAVE_RESERVAS, estado.minhas);
+      if (nome) { try { localStorage.setItem(CHAVE_NOME, nome); } catch { /* ignora */ } }
+      it.reservado = true;
+      estado.hash = JSON.stringify(estado.itens);
+      render();
+      aviso('Presente reservado. Obrigado!');
+    } else if (r.erro === 'ja_reservado') {
+      it.reservado = true;
+      render();
+      aviso('Este item acabou de ser reservado por outra pessoa.');
+    } else if (r.erro === 'lista_mudou') {
+      aviso('A lista foi atualizada. Carregando a versão mais recente.');
+      carregar(true);
+    } else {
+      throw new Error(r.erro || 'falha');
+    }
+  }
+
+  async function cancelar(it) {
+    const r = await chamar('cancelar', { id: it.id, link: it.link, item: it.nome, token: estado.minhas[chaveDe(it)] });
+    if (r.ok) {
+      delete estado.minhas[chaveDe(it)];
+      gravarJSON(CHAVE_RESERVAS, estado.minhas);
+      it.reservado = false;
+      estado.hash = JSON.stringify(estado.itens);
+      render();
+      aviso('Reserva cancelada.');
+    } else if (r.erro === 'lista_mudou') {
+      aviso('A lista foi atualizada. Carregando a versão mais recente.');
+      carregar(true);
+    } else {
+      aviso('Não foi possível cancelar por aqui. Fale com o casal.');
+    }
+  }
+
+  $('#grade').addEventListener('click', e => {
+    const botao = e.target.closest('[data-acao]');
+    if (!botao) return;
+    const acao = botao.dataset.acao;
+    if (acao === 'recarregar') { carregar(); return; }
+
+    const it = estado.itens.find(i => String(i.id) === botao.dataset.id);
+    if (!it) return;
+
+    if (acao === 'reservar') {
+      abrirDialogo({
+        titulo: 'Reservar este presente',
+        item: it.nome,
+        texto: 'Ao confirmar, o item aparece como reservado para todos os convidados. Se mudar de ideia, você pode cancelar a reserva neste mesmo aparelho.',
+        pedirNome: true,
+        rotulo: 'Confirmar reserva',
+        aoConfirmar: nome => reservar(it, nome)
+      });
+    } else if (acao === 'cancelar') {
+      abrirDialogo({
+        titulo: 'Cancelar reserva',
+        item: it.nome,
+        texto: 'O item volta a ficar disponível para os outros convidados.',
+        pedirNome: false,
+        rotulo: 'Cancelar reserva',
+        aoConfirmar: () => cancelar(it)
+      });
+    }
+  });
+
+  // Imagens que não carregam viram o marcador padrão (o evento error não propaga).
+  $('#grade').addEventListener('error', e => {
+    if (e.target.tagName !== 'IMG') return;
+    const marcador = document.createElement('span');
+    marcador.className = 'sem-foto';
+    marcador.innerHTML = ICONES.caixa;
+    e.target.replaceWith(marcador);
+  }, true);
+
+  $('#busca').addEventListener('input', e => { estado.busca = e.target.value; render(); });
+  $('#ambiente').addEventListener('change', e => { estado.categoria = e.target.value; render(); });
+
+  document.querySelectorAll('[data-filtro]').forEach(botao => {
+    botao.addEventListener('click', () => {
+      estado.filtro = botao.dataset.filtro;
+      document.querySelectorAll('[data-filtro]').forEach(b =>
+        b.setAttribute('aria-pressed', String(b === botao)));
+      render();
+    });
+  });
+
+  /* ------------------------------ Início ------------------------------ */
+
+  if (!CONFIG.API_URL) $('#demo').hidden = false;
+
+  if (CONFIG.API_URL) {
+    const cache = lerJSON(CHAVE_CACHE, null);
+    if (Array.isArray(cache) && cache.length) {
+      estado.itens = cache;
+      estado.hash = JSON.stringify(cache);
+      estado.carregado = true;
+    }
+  }
+  render();
+  carregar(estado.carregado);
+
+  setInterval(() => {
+    if (!document.hidden && !dlg.open) carregar(true);
+  }, CONFIG.ATUALIZAR_A_CADA_MS);
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && Date.now() - ultimaCarga > 15000) carregar(true);
+  });
+})();
+</script>
+</body>
+</html>
