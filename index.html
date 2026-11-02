@@ -16,9 +16,9 @@
 
   :root {
     --pinho: #26272B;
-    --folha: #7C9184;
-    --folha-escura: #54695B;
-    --salvia: #E9EAE7;
+    --folha: #2E7A58;
+    --folha-escura: #1F5C42;
+    --salvia: #E6EFE9;
     --ameixa: #2E2A33;
     --ameixa-escura: #1B181F;
     --roxo-suave: #6D5C7E;
@@ -72,7 +72,7 @@
   .hero {
     position: relative;
     overflow: hidden;
-    background: transparent;
+    background: var(--salvia);
     color: var(--tinta);
     padding: clamp(56px, 9vw, 112px) var(--gutter) var(--hero-pb);
   }
@@ -122,9 +122,9 @@
     stroke-dashoffset: 1;
     animation: desenhar 1.6s cubic-bezier(.2, .7, .2, 1) forwards;
   }
-  .arco-externo { stroke: #CFC8D8; }
-  .arco-medio { stroke: #B7C6BC; animation-delay: .25s; }
-  .arco-cheio { fill: #E4DEEA; opacity: 0; animation: aparecer 1s .9s ease-out forwards; }
+  .arco-externo { stroke: #B5CDBF; }
+  .arco-medio { stroke: #7FAE97; animation-delay: .25s; }
+  .arco-cheio { fill: #D9D0E4; opacity: 0; animation: aparecer 1s .9s ease-out forwards; }
   @keyframes desenhar { to { stroke-dashoffset: 0; } }
   @keyframes aparecer { to { opacity: 1; } }
 
@@ -253,7 +253,7 @@
     display: block;
     aspect-ratio: 1;
     border-radius: 2px;
-    background: #ECEBE9;
+    background: var(--salvia);
     overflow: hidden;
   }
   .foto img, .sem-foto {
@@ -266,7 +266,7 @@
     mix-blend-mode: multiply;
     transition: opacity .25s ease, filter .25s ease;
   }
-  .sem-foto { display: grid; place-items: center; color: #A3AEA7; }
+  .sem-foto { display: grid; place-items: center; color: #7FA995; }
   .selo {
     position: absolute; top: 10px; right: 10px; left: auto; z-index: 1;
     padding: 5px 8px;
@@ -457,7 +457,7 @@
 <header class="hero">
   <div class="hero-in">
     <div class="hero-texto">
-      <h1 class="intervalo">Chá de casa nova </h1><br> <h1> Álvaro<br>e Yasmin</h1>
+      <h1 class="intervalo">Chá de casa nova<br> Álvaro<br>e Yasmin</h1>
       <p class="subtitulo">Lista de presentes da nossa casa nova</p>
       <p class="intro">Estamos montando a casa aos poucos e vamos adorar ter você por perto. Se quiser nos presentear, escolha um item abaixo. Ao reservar, ele fica marcado para os outros convidados e evitamos presentes repetidos.</p>
     </div>
