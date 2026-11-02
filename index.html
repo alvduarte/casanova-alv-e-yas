@@ -13,17 +13,18 @@
 
 <style>
   :root {
-    --pinho: #12372A;
-    --folha: #2E7A58;
-    --folha-escura: #1F5C42;
-    --salvia: #E6EFE9;
-    --ameixa: #43334b;
-    --ameixa-escura: #43334b;
-    --lilas: #EDE6F6;
-    --papel: #FBFBF9;
-    --tinta: #17231D;
-    --tinta-suave: #55635B;
-    --linha: #D6E0D9;
+    --pinho: #1F2A24;
+    --folha: #5E7A6B;
+    --folha-escura: #46604F;
+    --salvia: #E8ECE9;
+    --ameixa: #3B3243;
+    --ameixa-escura: #2C2532;
+    --lilas: #ECE9EF;
+    --papel: #F3F2F0;
+    --cartao: #FAF9F8;
+    --tinta: #25262A;
+    --tinta-suave: #6B6D6E;
+    --linha: #D9D8D5;
     --largura: 1200px;
     --gutter: clamp(20px, 5vw, 48px);
     --hero-pb: clamp(56px, 8vw, 96px);
@@ -62,7 +63,7 @@
     position: relative;
     overflow: hidden;
     background: var(--pinho);
-    color: #F2F6F3;
+    color: #F1F0EE;
     padding: clamp(56px, 9vw, 112px) var(--gutter) var(--hero-pb);
   }
   .hero-in {
@@ -83,13 +84,13 @@
   .hero .subtitulo {
     font-size: clamp(1.15rem, 2.4vw, 1.5rem);
     font-weight: 500;
-    color: #D9C9EF;
+    color: #CFC6D9;
     margin: 0 0 14px;
   }
   .hero .intro {
     max-width: 48ch;
     margin: 0;
-    color: #C5D8CD;
+    color: #C2CBC5;
     font-size: 1.0625rem;
   }
   .arcos {
@@ -108,8 +109,8 @@
     stroke-dashoffset: 1;
     animation: desenhar 1.6s cubic-bezier(.2, .7, .2, 1) forwards;
   }
-  .arco-externo { stroke: #43334b; }
-  .arco-medio { stroke: #4E9A78; animation-delay: .25s; }
+  .arco-externo { stroke: #4A3F55; }
+  .arco-medio { stroke: #6E8F7C; animation-delay: .25s; }
   .arco-cheio { fill: var(--ameixa); opacity: 0; animation: aparecer 1s .9s ease-out forwards; }
   @keyframes desenhar { to { stroke-dashoffset: 0; } }
   @keyframes aparecer { to { opacity: 1; } }
@@ -142,11 +143,11 @@
     padding: 0 14px 0 42px;
     border: 1.5px solid var(--linha);
     border-radius: 10px;
-    background: #fff;
+    background: var(--cartao);
     color: var(--tinta);
     font: inherit;
   }
-  .busca input::placeholder { color: #75837B; }
+  .busca input::placeholder { color: #86888A; }
   .busca input:focus-visible { outline-offset: 0; border-color: var(--ameixa); }
   .seletor { flex: 0 1 210px; }
   .seletor select {
@@ -155,7 +156,7 @@
     padding: 0 40px 0 14px;
     border: 1.5px solid var(--linha);
     border-radius: 10px;
-    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2355635B' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center;
+    background: var(--cartao) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B6D6E' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center;
     color: var(--tinta);
     font: inherit;
     text-overflow: ellipsis;
@@ -185,8 +186,8 @@
     cursor: pointer;
   }
   .filtros button[aria-pressed="true"] {
-    background: #fff;
-    box-shadow: 0 1px 2px rgba(18, 55, 42, .18);
+    background: var(--cartao);
+    box-shadow: 0 1px 2px rgba(31, 42, 36, .18);
   }
   .progresso {
     margin-left: auto;
@@ -241,7 +242,7 @@
     mix-blend-mode: multiply;
     transition: opacity .25s ease, filter .25s ease;
   }
-  .sem-foto { display: grid; place-items: center; color: #7FA995; }
+  .sem-foto { display: grid; place-items: center; color: #8FA699; }
   .selo {
     position: absolute; top: 12px; left: 12px; z-index: 1;
     padding: 7px 11px;
@@ -329,11 +330,11 @@
     padding: 0;
     border: 0;
     border-radius: 18px;
-    background: #fff;
+    background: var(--cartao);
     color: var(--tinta);
-    box-shadow: 0 24px 60px rgba(18, 55, 42, .28);
+    box-shadow: 0 24px 60px rgba(31, 42, 36, .28);
   }
-  dialog::backdrop { background: rgba(18, 55, 42, .55); }
+  dialog::backdrop { background: rgba(31, 42, 36, .55); }
   dialog[open] { animation: entrar .2s ease-out; }
   @keyframes entrar { from { opacity: 0; transform: translateY(8px); } }
   .dlg-corpo { padding: 28px; }
@@ -352,6 +353,7 @@
   .dlg-campo input {
     width: 100%; height: 44px; padding: 0 14px;
     border: 1.5px solid var(--linha); border-radius: 10px;
+    background: #fff;
     font: inherit; color: var(--tinta);
   }
   .dlg-campo input:focus-visible { outline-offset: 0; border-color: var(--ameixa); }
